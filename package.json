@@ -37,16 +37,8 @@
   "author": "",
   "license": "ISC",
   "description": "create a .env file and add the following; DB_URI = \"\" ENVIRONMENT = Local/Database ( to conect to database) PORT  APP_KEY",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goku-ts/backend-login-signup.git"
-  },
-  "bugs": {
-    "url": "https://github.com/goku-ts/backend-login-signup/issues"
-  },
-  "homepage": "https://github.com/goku-ts/backend-login-signup#readme",
+  "bugs": {},
   "name": "agrifolio",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "module"
+  "main": "index.js"
 }
