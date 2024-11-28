@@ -1,10 +1,10 @@
 import express from "express"
 require('dotenv').config({ path: "../.env" });
 
-import { dbConnect } from "./db/connectionDb"
+import { dbConnect } from "./src/db/connectionDb"
 import cors from "cors"
-import { userRouter } from "./route/userRoutes"
-import { profileRouter } from "./route/profileRoutes"
+import { userRouter } from "./src/route/userRoutes"
+import { profileRouter } from "./src/route/profileRoutes"
 
 
 
