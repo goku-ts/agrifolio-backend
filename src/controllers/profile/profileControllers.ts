@@ -5,10 +5,10 @@ import { logger } from "../../services/loggerService"
 import { ImageUpload } from "../imageUpload"
 import { AuthRequestType } from "../../middlewares/authMiddleware"
 
-import { addToDB, getFromDB, getAllFromDB, updateToDB, deleteFromDB, getByUserFromDB } from "../../db/operations/dbOperations"
+import { addToDB, getFromDB, getAllFromDB, updateToDB, deleteFromDB, getByUserFromDB } from "../../db/operations/profileOperations"
 import { validatePost } from "../../services/validationService"
 
-export const addPost = async (req: AuthRequestType, res: Response) => {
+export const addProfile = async (req: AuthRequestType, res: Response) => {
     try {
         const result = await addToDB(req, Profile,)
 
@@ -27,7 +27,7 @@ export const addPost = async (req: AuthRequestType, res: Response) => {
     }
 }
 
-export const getPost = async (req: Request, res: Response) => {
+export const getProfile = async (req: Request, res: Response) => {
     try {
         const [result] = await getFromDB(req, Profile)
 
@@ -35,7 +35,6 @@ export const getPost = async (req: Request, res: Response) => {
         if (!result) return res.status(404).json({
             message: "profile not found"
         })
-
 
         res.json({
             status: "SUCCESS",
@@ -50,7 +49,7 @@ export const getPost = async (req: Request, res: Response) => {
 
 
 
-export const getAllPosts = async (req: Request, res: Response) => {
+export const getAllProfiles = async (req: Request, res: Response) => {
     try {
 
         const result = await getAllFromDB(req, Profile)
@@ -64,7 +63,7 @@ export const getAllPosts = async (req: Request, res: Response) => {
     }
 }
 
-export const updatePost = async (req: Request, res: Response) => {
+export const updateProfiles = async (req: Request, res: Response) => {
     try {
         await updateToDB(req, Profile)
         res.json({
@@ -76,7 +75,7 @@ export const updatePost = async (req: Request, res: Response) => {
     }
 }
 
-export const deletePost = async (req: Request, res: Response) => {
+export const deleteProfile = async (req: Request, res: Response) => {
     try {
         const result = await deleteFromDB(req, Profile)
         res.json({
@@ -88,41 +87,41 @@ export const deletePost = async (req: Request, res: Response) => {
     }
 }
 
-export const uploadPostImage = async (req: Request, res: Response) => {
-    const id = req.params.id
-    const body = req.body
-    try {
-        const post = await Profile.findById({ _id: id })
-        if (!post) res.json({
-            message: "post not found, could not upload image"
-        })
+// export const uploadPostImage = async (req: Request, res: Response) => {
+//     const id = req.params.id
+//     const body = req.body
+//     try {
+//         const post = await Profile.findById({ _id: id })
+//         if (!post) res.json({
+//             message: "post not found, could not upload image"
+//         })
 
-        const result = await ImageUpload(req.file)
-        if (!result) return res.json({
-            message: "image updload fail"
-        })
+//         const result = await ImageUpload(req.file)
+//         if (!result) return res.json({
+//             message: "image updload fail"
+//         })
 
-        body.image = result
-        const update = await Profile.findByIdAndUpdate({ _id: id }, { ...body })
-        res.json({
-            message: "SUCCESS"
-        })
+//         body.image = result
+//         const update = await Profile.findByIdAndUpdate({ _id: id }, { ...body })
+//         res.json({
+//             message: "SUCCESS"
+//         })
 
-    } catch (error) {
-        logger.error(error)
-    }
+//     } catch (error) {
+//         logger.error(error)
+//     }
 
-}
+// }
 
-export const getUserPosts = async (req: AuthRequestType, res: Response) => {
-    try {
-        const result = await getByUserFromDB(req, Profile)
-        res.json({
-            message: "SUCCESS",
-            post: result
-        })
+// export const getUserPosts = async (req: AuthRequestType, res: Response) => {
+//     try {
+//         const result = await getByUserFromDB(req, Profile)
+//         res.json({
+//             message: "SUCCESS",
+//             post: result
+//         })
 
-    } catch (error) {
-        logger.error(error)
-    }
-}
+//     } catch (error) {
+//         logger.error(error)
+//     }
+// }

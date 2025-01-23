@@ -12,34 +12,53 @@ export type UserLoginTypes = {
   password: string,
 }
 
+export type Products = {
+  name: string
+  description: string,
+  image: string,
+  inStock: boolean,
+  price: string
+}
+
+export type Values = {
+  id: string
+  title: string,
+  content: string,
+}
+
 export type ProfileTypes = {
   pid: string,
   user: any,
   businessProfile: {
     logo: string,
     name: string
-    businessTypes: string[]
-    businessTypesDetails: string
-    historyAndMission: string,
-    values: string[],
-    valuesDetails: string,
-    sustainabilityPractices: string[],
-    sustainabilityDetails: string,
-    agriculturalExpertise: string[],
-    expertiseDetails: string,
+    heroText: string
+    heroDescription: string
+    heroImage: string
+    keyServices: []
+    aboutUs: {
+      whoWeAre: string
+      whoWeAreImage: string
+      whatWeDo: string
+      whatWeDoImage: string
+      historyAndMission: string
+      values: string
+      valuesImage: string
+      ourTeam: string
+      ourTeamImage: string
+    },
+    products: Products[]
   },
   contactInformation: {
-    location: {
-      country: string,
-      region: string
-      city: string,
-      address: string,
-    },
-    contact: {
-      email: string,
-      phone: string[],
-    }
+    country: string,
+    region: string
+    city: string,
+    address: string,
+    email: string,
+    phone: string[],
     serviceAreas: string[],
+    workingHours: string,
+    additionalInfo: string
   },
   gallery: any[],
 }
